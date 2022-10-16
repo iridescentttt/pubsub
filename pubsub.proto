@@ -1,0 +1,22 @@
+// pubsub.proto
+syntax = "proto3";
+
+service PubSub {
+    rpc Publish(PublishRequest) returns (Response) {}
+    rpc Subscribe(SubscribeRequest) returns (stream Response) {}
+}
+
+message PublishRequest {
+    string channelName = 1;
+    int64 delayTime = 2;
+    string msg = 3;
+}
+
+message SubscribeRequest {
+    string channelName = 1;
+    int64 delayTime = 2;
+}
+
+message Response {
+    string msg = 1;
+}
